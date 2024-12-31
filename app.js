@@ -1,8 +1,9 @@
 import express from 'express';
 import cors from "cors"
 import 'dotenv/config';
-import { router } from './routes/auth.js'
 import { dbConnection } from './database/config.js';
+import { authRouter } from './routes/auth.js'
+import { eventsRouter } from './routes/events.js';
 
 //* Server
 const app = express();
@@ -20,7 +21,8 @@ app.use( express.static( 'public' ));
 app.use( express.json() );
 
 //* Rutas
-app.use('/api/auth', router );
+app.use('/api/auth', authRouter );
+app.use('/api/events', eventsRouter );
 
 app.listen(process.env.PORT, () => {
   console.log(`Estoy vivo en el port: ${process.env.PORT}`)

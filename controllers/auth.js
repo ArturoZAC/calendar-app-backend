@@ -1,6 +1,6 @@
 import express from "express"
-import { UserModel } from "../models/user.js";
 import bycrpt from "bcrypt"
+import { UserModel } from "../models/user.js";
 import { generateJWT } from "../helpers/jwt.js";
 
 export const createNewUser = async (req, res) => {
