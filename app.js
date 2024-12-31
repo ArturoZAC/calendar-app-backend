@@ -9,7 +9,14 @@ import { eventsRouter } from './routes/events.js';
 const app = express();
 
 //*Base de Datos
-dbConnection();
+(async () => {
+  try {
+    await dbConnection();
+  } catch (error) {
+    console.error('No se pudo conectar a la base de datos:', error.message);
+    process.exit(1); // Termina el proceso si falla la conexión a la base de datos
+  }
+})();
 
 //* CORS
 app.use(cors());

@@ -3,7 +3,10 @@ import mongoose from "mongoose";
 export const dbConnection = async () => {
 
   try {
-    await mongoose.connect(process.env.DB_CNN)    
+    await mongoose.connect(process.env.DB_CNN, {
+      // useNewUrlParser: true,
+      // useUnifiedTopology: true,
+    })    
 
     console.log('BD ONLINE')
   } catch (error) {
