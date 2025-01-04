@@ -1,10 +1,15 @@
 import express from 'express';
 import cors from "cors"
 import 'dotenv/config';
-import path from "path"
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { dbConnection } from './database/config.js';
 import { authRouter } from './routes/auth.js'
 import { eventsRouter } from './routes/events.js';
+
+// Obtener __dirname para ES6
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 //* Server
 const app = express();
@@ -25,9 +30,9 @@ app.use( express.json() );
 app.use('/api/auth', authRouter );
 app.use('/api/events', eventsRouter );
 
-app.use('*', (req,res) => {
-  res.sendFile( path.join(__dirname, 'public/index.html') )
-})
+app.use('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 app.listen(process.env.PORT, () => {
   console.log(`Estoy vivo en el port: ${process.env.PORT}`)
